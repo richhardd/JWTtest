@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace webJWT
+namespace webJWT.Models
 {
     public class TokenManager
     {
