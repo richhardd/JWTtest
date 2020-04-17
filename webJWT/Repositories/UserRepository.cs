@@ -11,8 +11,8 @@ namespace webJWT.Repositories
         public UserRepository()
         {
             TestUsers = new List<User>();
-            TestUsers.Add(new User() { username = "test1", password = "pass1" });
-            TestUsers.Add(new User() { username = "test2", password = "pass2" });
+            TestUsers.Add(new User() { username = "test1", password = "pass1" , role = UserRole.ADMIN});
+            TestUsers.Add(new User() { username = "test2", password = "pass2" , role = UserRole.NORMAL});
         }
         public User GetUser(string username)
         {

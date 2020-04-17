@@ -10,5 +10,7 @@ namespace webJWT
     {
         public string username { set; get; }
         public string password { set; get; }
+
+        public UserRole role { get; set; }
     }
 }
