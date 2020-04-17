@@ -9,11 +9,10 @@ using webJWT.Models;
 
 namespace webJWT.Controllers
 {
-    [Authorize]
+    
     public class LoginController : ApiController
     {
         [HttpPost]
-        [AllowAnonymous]
         public HttpResponseMessage Login (User user)
         {
             User u = new UserRepository().GetUser(user.username);
@@ -25,18 +24,22 @@ namespace webJWT.Controllers
             if (!credentials)
                 return Request.CreateResponse(HttpStatusCode.Forbidden, "The username/password combination was wrong.");
 
-            return Request.CreateResponse(HttpStatusCode.OK,TokenManager.GenerateToken(user.username));
+            return Request.CreateResponse(HttpStatusCode.OK, TokenManager.GenerateToken(user.username)) ;
         }
 
         [HttpGet]
-        public HttpResponseMessage Validate (string token, string username)
+        
+        public HttpResponseMessage Validate (User user)
         {
-            bool exists = new UserRepository().GetUser(username) != null;
+            var token = Request.Headers.Authorization.Scheme.ToString();
+            bool exists = new UserRepository().GetUser(user.username) != null;
             if (!exists) 
                 return Request.CreateResponse(HttpStatusCode.NotFound, "The user was not found.");
+            
             string tokenUsername = TokenManager.ValidateToken(token);
-            if (username.Equals(tokenUsername))
-                return Request.CreateResponse(HttpStatusCode.OK);
+           if (user.username.Equals(tokenUsername))
+              return Request.CreateResponse(HttpStatusCode.OK);
+
             return Request.CreateResponse(HttpStatusCode.BadRequest);
 
         }

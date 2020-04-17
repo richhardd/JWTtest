@@ -22,7 +22,7 @@ namespace webJWT.Models
             SecurityTokenDescriptor Descriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, username) }),
-                Expires = DateTime.UtcNow.AddMinutes(30),
+                Expires = DateTime.UtcNow.AddMinutes(5),
                 SigningCredentials = new SigningCredentials(SecurityKey, SecurityAlgorithms.HmacSha256Signature)
             };
             JwtSecurityTokenHandler Handler = new JwtSecurityTokenHandler();
