@@ -13,6 +13,7 @@ namespace webJWT.Repositories
             TestUsers = new List<User>();
             TestUsers.Add(new User() { username = "test1", password = "pass1" , role = UserRole.ADMIN});
             TestUsers.Add(new User() { username = "test2", password = "pass2" , role = UserRole.NORMAL});
+            TestUsers.Add(new User(){username = "test3", password = "pass3",role=UserRole.NORMAL})
         }
         public User GetUser(string username)
         {
